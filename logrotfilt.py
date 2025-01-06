@@ -4,11 +4,11 @@ import sys
 import os
 import argparse
 
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--split", action="store", dest="split", type=int, default=1, help="split size in MB")
     parser.add_argument("--template", action="store", dest="template", required=True, help="output file name template")
+    parser.add_argument("-e", "--echo", action="store_true", help="echo lines to stdout")
     parser.add_argument("-v", "--verbose", action="store_true", help="verbose output")
     args=parser.parse_args()
 
@@ -29,6 +29,9 @@ def main():
                     print(f"INFO closing {outputfilename}  and exiting")
                 f.close()
                 return 0
+            if args.echo:
+                print(line, end="")
+                #sys.stdout.flush()
             f.write(line)
             f.flush()
             datasize += len(line)
