@@ -25,16 +25,18 @@ def main():
         while True:
             line = sys.stdin.readline()
             if not line:
-                print(f"INFO closing file and exiting")
+                if args.verbose:
+                    print(f"INFO closing {outputfilename}  and exiting")
                 f.close()
                 return 0
             f.write(line)
             f.flush()
             datasize += len(line)
-            if args.verbose:
-                print(f"INFO datasize {datasize}")
+            #if args.verbose:
+            #    print(f"INFO datasize {datasize}")
             if datasize > args.split*1024*1024:
-                print(f"INFO closing file and continuing to next")
+                if args.verbose:
+                    print(f"INFO closing {outputfilename} and continuing to next")
                 f.close()
                 break;
         count += 1
