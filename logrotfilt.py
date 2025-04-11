@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Copyright 2025 Rick Dermer. Subject to the MIT license
+
 import sys
 import os
 import argparse
